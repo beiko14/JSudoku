@@ -10,7 +10,37 @@ import static sudoku.problemdomain.SudokuGame.GRID_BOUNDARY;
 
 public class GameGenerator {
     public static int[][] getNewGameGrid(){
-        return unsolveGame(getSolvedGame());
+        return unsolvedGame(getSolvedGame());
+    }
+
+    private static int[][] unsolvedGame(int[][] solvedGame) {
+        Random random = new Random();
+
+        boolean solvable = false;
+        int[][] solvableArray = new int[GRID_BOUNDARY][GRID_BOUNDARY];
+
+        while(!solvable){
+            SudokuUtilities.copySudokuArrayValues(solvedGame, solvableArray);
+            int index = 0;
+
+            // remove 40 numbers from an already solved game
+            while(index < 40){
+                int xCoordinate = random.nextInt(GRID_BOUNDARY);
+                int yCoordinate = random.nextInt(GRID_BOUNDARY);
+
+                // if the field is 0 search for a new one
+                if(solvableArray[xCoordinate] [yCoordinate] != 0){
+                    solvableArray[xCoordinate][yCoordinate] = 0;
+                    index++;
+                }
+            }
+
+            // check if the game is solvable att all
+            int[][] toBeSolved = new int[GRID_BOUNDARY][GRID_BOUNDARY];
+            SudokuUtilities.copySudokuArrayValues(solvableArray, toBeSolved);
+            solvable = SudokuSolver.puzzleIsSolveable(toBeSolved);
+        }
+        return solvableArray;
     }
 
     private static int[][] getSolvedGame() {
