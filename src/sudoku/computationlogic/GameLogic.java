@@ -64,10 +64,36 @@ public class GameLogic {
                 if(squareIsValid(0, 0, grid)){
                     return true;
                 }
+                if(squareIsValid(3, 0, grid)){
+                    return true;
+                }
+                if(squareIsValid(6, 0, grid)){
+                    return true;
+                }
+                return false;
+
+            case MIDDLE:
+                //check first, second and third square in the MIDDLE row
                 if(squareIsValid(0, 3, grid)){
                     return true;
                 }
+                if(squareIsValid(3, 3, grid)){
+                    return true;
+                }
+                if(squareIsValid(6, 3, grid)){
+                    return true;
+                }
+                return false;
+
+            case BOTTOM:
+                //check first, second and third square in the BOTTOM row
                 if(squareIsValid(0, 6, grid)){
+                    return true;
+                }
+                if(squareIsValid(3, 6, grid)){
+                    return true;
+                }
+                if(squareIsValid(6, 6, grid)){
                     return true;
                 }
                 return false;
