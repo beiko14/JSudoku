@@ -44,6 +44,34 @@ public class GameLogic {
         }
     }
 
+    // check every row in the grid and check if there are any repeated numbers
+    private static boolean rowsAreInvalid(int[][] grid) {
+        for(int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++){
+            List<Integer> row = new ArrayList<>();
+            for(int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++){
+                row.add(grid[xIndex][yIndex]);
+            }
+            if(collectionHasRepeats(row)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // check every column in the grid and check if there are any repeated numbers
+    private static boolean columnsAreInvalid(int[][] grid) {
+        for(int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++){
+            List<Integer> column = new ArrayList<>();
+            for(int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++){
+                column.add(grid[xIndex][yIndex]);
+            }
+            if(collectionHasRepeats(column)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static boolean squaresAreInvalid(int[][] grid) {
         if(rowOfSquaresIsInvalid(Rows.TOP, grid)){
             return true;
