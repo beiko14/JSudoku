@@ -125,7 +125,7 @@ public class GameLogic {
                     return true;
                 }
                 return false;
-                
+
             default:
                 return false;
         }
